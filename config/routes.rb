@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-root to: 'blogs#index'
+  resources :favorites, only: [:index]
+  resources :favorites, only: [:create, :destroy]
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+root 'tops#index'
   resources :comments
   resources :blogs
   devise_for :users

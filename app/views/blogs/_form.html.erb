@@ -22,11 +22,11 @@
   </div>
 
   <div class="field">
-
-      <%= form.label :image %>
-      <%= form.file_field :image %>
-      <%= form.hidden_field :image_cache %>
-    </div><br>
+    <%= form.label :image %>
+    <%= image_tag(@blog.image.url) if @blog.image && @blog.image.url %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
+  </div>
 
   <div class="field">
     <%= form.label :user_id %>

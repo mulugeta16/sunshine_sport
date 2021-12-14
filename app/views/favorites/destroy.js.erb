@@ -1,0 +1,7 @@
+// $("#favorite-btn-<%= @.id %>").html("<%= j(render partial: 'favorites/favorite', locals: {blog: @blog }) %>");
+// $("#favorite-btn-favorites<%= @blog.id %>").remove();
+<% if @current_page == 'index' %>
+  $("#favorite-btn-<%= @blog.id %>").html("<%= j(render partial: 'favorites/favorite', locals: {blog: @blog }) %>");
+<% else %>
+  $('#favorite-btn-<%= @blog.id %>').remove();
+<% end %>

@@ -1,0 +1,21 @@
+<% if blog.favorited_by?(current_user) && blog.favorites.count < 10 %>
+  <%= link_to blog_favorite_path(blog.id, blog.favorite_ids), id: 'test-link', method: :delete, remote: true do %>
+    <i class="fa fa-heart heart_red"></i>
+    <span class="awesome-icon icon-padding"><%= blog.favorites.count %></span>
+  <% end %>
+<% elsif blog.favorites.count < 10 %>
+  <%= link_to blog_favorites_path(blog.id), id: 'link', method: :blog, remote: true do %>
+    <i class="fa fa-heart-o heart_o"></i>
+    <span class="awesome-icon icon-padding"><%= blog.favorites.count %></span>
+  <% end %>
+<% elsif blog.favorited_by?(current_user) && blog.favorites.count >= 10 %>
+  <%= link_to blog_favorite_path(blog.id, blog.favorite_ids), id: 'test-link', method: :delete, remote: true do %>
+    <i class="fa fa-medium fa-lg medium_red"></i>
+    <span class="awesome-icon"><%= blog.favorites.count %></span>
+  <% end %>
+<% else %>
+  <%= link_to blog_favorites_path(blog.id), id: 'link', method: :blog, remote: true do %>
+    <i class="fa fa-medium fa-lg medium_o"></i>
+    <span class="awesome-icon"><%= blog.favorites.count %></span>
+  <% end %>
+<% end %>
