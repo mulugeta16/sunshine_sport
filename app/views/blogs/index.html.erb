@@ -1,31 +1,69 @@
 <p id="notice"><%= notice %></p>
 
+
+
 <h1>Blogs</h1>
 
+
+
 <table class="table">
+
   <thead>
+
     <tr>
+
+      <th>Blog Author</th>
+
       <th>Title</th>
+
       <th>Content</th>
+
       <th>Image</th>
+
       <th colspan="3"></th>
+
     </tr>
+
   </thead>
 
+
+
   <tbody>
+
     <% @blogs.each do |blog| %>
+
       <tr>
+
+        <td><%= blog.user.email %></td>
+
         <td><%= blog.title %></td>
+
         <td><%= blog.content %></td>
-        <p><%= image_tag(blog.image_url) if blog.image.present? %></p>
+
+        <td><%= image_tag(blog.image_url,class:'show_image') if blog.image.present? %></td>
+
         <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% if current_user.id == blog.user_id %>
+
+          <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+
+          <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% end %>
+
       </tr>
+
     <% end %>
+
   </tbody>
+
 </table>
 
+
+
 <br>
+
+
 
 <%= link_to 'New Blog', new_blog_path %>
